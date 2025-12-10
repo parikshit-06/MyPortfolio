@@ -88,7 +88,7 @@ cards.forEach(card => {
 });
 
 const typingElement = document.querySelector('.info-home h3'); 
-const words = ["Aerospace Engineer","Machine Learning Engineer", "Systems Engineer", "Robotics Engineer", "AI Developer"];
+const words = ["Aerospace Engineer", "Autonomous Systems Engineer", "Robotics Engineer", "AI/ML Developer"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
