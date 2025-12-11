@@ -87,6 +87,41 @@ cards.forEach(card => {
   card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0) scale(1)');
 });
 
+// Enable drag-to-scroll for the project tray on mobile widths
+const projectTray = document.querySelector('.projects-container');
+if (projectTray) {
+  let isDragging = false;
+  let startX = 0;
+  let scrollStart = 0;
+
+  const startDrag = (e) => {
+    isDragging = true;
+    projectTray.classList.add('dragging');
+    startX = (e.pageX || e.touches[0].pageX) - projectTray.offsetLeft;
+    scrollStart = projectTray.scrollLeft;
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+    projectTray.classList.remove('dragging');
+  };
+
+  const onDrag = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = (e.pageX || e.touches[0].pageX) - projectTray.offsetLeft;
+    const walk = x - startX;
+    projectTray.scrollLeft = scrollStart - walk;
+  };
+
+  projectTray.addEventListener('mousedown', startDrag);
+  projectTray.addEventListener('touchstart', startDrag, { passive: true });
+  projectTray.addEventListener('mousemove', onDrag);
+  projectTray.addEventListener('touchmove', onDrag, { passive: false });
+  projectTray.addEventListener('mouseleave', stopDrag);
+  ['mouseup', 'touchend', 'touchcancel'].forEach(evt => projectTray.addEventListener(evt, stopDrag));
+}
+
 const typingElement = document.querySelector('.info-home h3'); 
 const words = ["Aerospace Engineer", "Autonomous Systems Engineer", "Robotics Engineer", "AI/ML Developer"];
 let wordIndex = 0;
