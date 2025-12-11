@@ -91,6 +91,8 @@ header {
 .home-container {
   display: flex;
   gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .home-p {
@@ -202,8 +204,9 @@ hr {
 }
 
 .home img {
-  width: 400px;
+  width: min(420px, 80vw);
   border-radius: 10px;
+  object-fit: cover;
 }
 
 /* fine home  */
@@ -703,6 +706,10 @@ body {
   background-color: var(--bg);
 }
 
+section {
+  scroll-margin-top: 90px;
+}
+
 #back-to-top {
   position: fixed;
   bottom: 32px;
@@ -934,5 +941,19 @@ body {
 
   .ul-list {
     gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-home h1 { font-size: 26px; }
+  .info-home h3 { font-size: 18px; }
+  .home, .about, .project, .services, .contact {
+    padding: 0 14px;
+  }
+  .project-card {
+    min-width: 92vw;
+  }
+  .btn-home1, .btn-home2 {
+    padding: 12px 12px;
   }
 }
